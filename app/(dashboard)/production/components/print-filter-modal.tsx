@@ -133,6 +133,9 @@ function freshSelections(): Selections {
     sort: [],
     aggregate: false,
     groupByBed: false,
+    bedType: "all",
+    dateFrom: "",
+    dateTo: "",
   };
 }
 
@@ -520,6 +523,33 @@ export function PrintFilterModal({ orderIds, trigger }: PrintFilterModalProps) {
                 </div>
               )}
 
+              {/* Bed type filter — for plan-utroska and plan-utroska-rekapitulacija */}
+              {applicable.has("bedType") && (
+                <div className="space-y-2 py-2 border-t">
+                  <Label className="text-sm font-medium">Tip kreveta</Label>
+                  <p className="text-xs text-muted-foreground">
+                    Filtriraj po tipu kreveta (drveni, metalni, ili svi).
+                  </p>
+                  <div className="grid gap-1.5">
+                    {([["all", "Svi (drveni + metalni)"], ["Drveni", "Samo drveni"], ["Metalni", "Samo metalni"]] as const).map(([value, label]) => (
+                      <label
+                        key={value}
+                        className="flex items-center gap-2 cursor-pointer rounded-md border px-3 py-2 hover:bg-accent transition-colors"
+                      >
+                        <input
+                          type="radio"
+                          name="bedType"
+                          checked={selections.bedType === value}
+                          onChange={() => setSelections((s) => ({ ...s, bedType: value }))}
+                          className="h-4 w-4"
+                        />
+                        <span className="text-sm">{label}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {/* Aggregate option — only for zbirni radni nalog */}
               {applicable.has("aggregate") && (
                 <div className="space-y-2 py-2 border-t">
@@ -533,6 +563,54 @@ export function PrintFilterModal({ orderIds, trigger }: PrintFilterModalProps) {
                   <p className="text-xs text-muted-foreground">
                     Sabira stavke s istim artiklom u jedan red sa zbirnom količinom.
                   </p>
+                </div>
+              )}
+
+              {/* Date range filter — for radni-nalog, plan-utroska, zbirni-radni-nalog */}
+              {applicable.has("dateRange") && (
+                <div className="space-y-2 py-2 border-t">
+                  <Label className="text-sm font-medium">Filter po datumu utovara</Label>
+                  <p className="text-xs text-muted-foreground">
+                    Prikazuje samo stavke čiji datum utovara pada unutar odabranog raspona.
+                  </p>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="space-y-1">
+                      <label className="text-xs text-muted-foreground">Od</label>
+                      <input
+                        type="date"
+                        value={selections.dateFrom}
+                        onChange={(e) => setSelections((s) => ({ ...s, dateFrom: e.target.value }))}
+                        className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <label className="text-xs text-muted-foreground">Do</label>
+                      <input
+                        type="date"
+                        value={selections.dateTo}
+                        onChange={(e) => setSelections((s) => ({ ...s, dateTo: e.target.value }))}
+                        className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      />
+                    </div>
+                  </div>
+                  {(selections.dateFrom || selections.dateTo) && (
+                    <div className="flex items-center justify-between">
+                      <p className="text-xs text-muted-foreground">
+                        {selections.dateFrom && selections.dateTo
+                          ? `${selections.dateFrom} — ${selections.dateTo}`
+                          : selections.dateFrom
+                            ? `Od ${selections.dateFrom}`
+                            : `Do ${selections.dateTo}`}
+                      </p>
+                      <button
+                        type="button"
+                        onClick={() => setSelections((s) => ({ ...s, dateFrom: "", dateTo: "" }))}
+                        className="text-xs text-muted-foreground hover:text-foreground underline underline-offset-2"
+                      >
+                        Poništi
+                      </button>
+                    </div>
+                  )}
                 </div>
               )}
             </div>

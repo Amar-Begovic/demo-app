@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getPrintData, filterItemsByArticle, buildDeptSections, buildDeptSectionsWithDimensions, parseSortParam, sortPrintData, aggregatePrintData, groupBySerialNumber, combineRecapsFlat, combineRecapsByArticle, getArticlesWithoutBom, applySetNameOverrides } from "@/lib/utils/print-helpers";
+import { getPrintData, filterItemsByArticle, filterItemsByDateRange, filterItemsByBedType, buildDeptSections, buildDeptSectionsWithDimensions, parseSortParam, sortPrintData, aggregatePrintData, groupBySerialNumber, combineRecapsFlat, combineRecapsByArticle, getArticlesWithoutBom, applySetNameOverrides } from "@/lib/utils/print-helpers";
 import type { PrintData, DeptSection, SortKey, CombinedRecapEntry, ArticleMaterialRecapEntry, ArticleWithoutBom } from "@/lib/utils/print-helpers";
 import { parseIds, buildDateFilter } from "@/lib/utils/filter-helpers";
 import { readPrintParams, type PrintType } from "@/lib/utils/print-applicability";
@@ -521,8 +521,18 @@ export default async function BulkPrintPage({
       continue;
     }
 
-    // Apply article filter before building print structures
-    const filteredData = sortPrintData(hasArticleFilter ? filterItemsByArticle(data, articleNamesSet) : data, sortKeys);
+    // Apply article filter and date range filter before building print structures
+    let filteredData = hasArticleFilter ? filterItemsByArticle(data, articleNamesSet) : data;
+    const bedType = applied?.bedType ?? "all";
+    if (bedType !== "all") {
+      filteredData = filterItemsByBedType(filteredData, bedType);
+    }
+    const itemDateFrom = applied?.dateFrom ?? "";
+    const itemDateTo = applied?.dateTo ?? "";
+    if (itemDateFrom || itemDateTo) {
+      filteredData = filterItemsByDateRange(filteredData, itemDateFrom, itemDateTo);
+    }
+    filteredData = sortPrintData(filteredData, sortKeys);
 
     const [radniNalogRows, rawLabelGroups] = await Promise.all([
       buildRadniNalogRows(filteredData, id),
@@ -677,9 +687,9 @@ export default async function BulkPrintPage({
                 </div>
 
                 <div style={{ marginBottom: 4, fontSize: "9pt", lineHeight: 1.3 }}>
-                  <div>Demo Company d.o.o.</div>
+                  <div>Pella Erwa EU d.o.o., PJ.1 NOKTA SLEEP</div>
                   <div>76100 Brčko, Brod bb</div>
-                  <div>JIB: 0000000000000 &nbsp; PDV: 000000000000</div>
+                  <div>JIB: 4600471110010 &nbsp; PDV: 600471110002</div>
                   <div>žiro-račun:</div>
                 </div>
 
@@ -788,9 +798,9 @@ export default async function BulkPrintPage({
                     {/* Large label — article */}
                     <div className="label-large">
                       <div className="company-header">
-                        <div className="brand">PRO</div>
-                        <div className="brand-sub">TRACK</div>
-                        <div className="address">Demo Company d.o.o. Brod bb Brčko</div>
+                        <div className="brand">NOKTA</div>
+                        <div className="brand-sub">SLEEP</div>
+                        <div className="address">Pella Erwa EU d.o.o., PJ.1 NOKTA SLEEP Brod bb Brčko</div>
                       </div>
 
                       {group.article.barcodeImage && (
@@ -829,9 +839,9 @@ export default async function BulkPrintPage({
                     {group.componentLabels.map((comp, cIdx) => (
                       <div key={`comp-${cIdx}`} className="label-large">
                         <div className="company-header">
-                          <div className="brand">PRO</div>
-                          <div className="brand-sub">TRACK</div>
-                          <div className="address">Demo Company d.o.o. Brod bb Brčko</div>
+                          <div className="brand">NOKTA</div>
+                          <div className="brand-sub">SLEEP</div>
+                          <div className="address">Pella Erwa EU d.o.o., PJ.1 NOKTA SLEEP Brod bb Brčko</div>
                         </div>
                         <div className="barcode-section">
                           <img src={`data:image/png;base64,${comp.barcodeImage}`} alt="Barkod" />
@@ -911,9 +921,9 @@ export default async function BulkPrintPage({
               {bundle.deptSections.map((dept, deptIdx) => (
                 <div key={deptIdx} className="dept-page" style={{ fontFamily: "Arial, sans-serif", padding: "12px 0" }}>
                   <div style={{ fontSize: "8pt", lineHeight: 1.3, marginBottom: 4 }}>
-                    <div>Demo Company d.o.o.</div>
+                    <div>Pella Erwa EU d.o.o., PJ.1 NOKTA SLEEP</div>
                     <div>76100 Brčko, Brod bb</div>
-                    <div>JIB: 0000000000000 &nbsp; PDV: 000000000000</div>
+                    <div>JIB: 4600471110010 &nbsp; PDV: 600471110002</div>
                     <div>žiro-račun:</div>
                   </div>
 
@@ -1107,9 +1117,9 @@ export default async function BulkPrintPage({
         <div className="recap-combined-section" style={{ padding: "0 24px", fontFamily: "Arial, sans-serif", fontSize: "10pt" }}>
           {/* Company header */}
           <div style={{ fontSize: "9pt", lineHeight: 1.3, marginBottom: 4 }}>
-            <div>Demo Company d.o.o.</div>
+            <div>Pella Erwa EU d.o.o., PJ.1 NOKTA SLEEP</div>
             <div>76100 Brčko, Brod bb</div>
-            <div>JIB: 0000000000000 &nbsp; PDV: 000000000000</div>
+            <div>JIB: 4600471110010 &nbsp; PDV: 600471110002</div>
             <div>žiro-račun:</div>
           </div>
 
@@ -1190,9 +1200,9 @@ export default async function BulkPrintPage({
         <div className="recap-combined-section" style={{ padding: "0 24px", fontFamily: "Arial, sans-serif", fontSize: "10pt" }}>
           {/* Company header */}
           <div style={{ fontSize: "9pt", lineHeight: 1.3, marginBottom: 4 }}>
-            <div>Demo Company d.o.o.</div>
+            <div>Pella Erwa EU d.o.o., PJ.1 NOKTA SLEEP</div>
             <div>76100 Brčko, Brod bb</div>
-            <div>JIB: 0000000000000 &nbsp; PDV: 000000000000</div>
+            <div>JIB: 4600471110010 &nbsp; PDV: 600471110002</div>
             <div>žiro-račun:</div>
           </div>
 
@@ -1334,9 +1344,9 @@ export default async function BulkPrintPage({
 
               {/* Company header */}
               <div style={{ marginBottom: 4, fontSize: "9pt", lineHeight: 1.3 }}>
-                <div>Demo Company d.o.o.</div>
+                <div>Pella Erwa EU d.o.o., PJ.1 NOKTA SLEEP</div>
                 <div>76100 Brčko, Brod bb</div>
-                <div>JIB: 0000000000000 &nbsp; PDV: 000000000000</div>
+                <div>JIB: 4600471110010 &nbsp; PDV: 600471110002</div>
                 <div>žiro-račun:</div>
               </div>
 

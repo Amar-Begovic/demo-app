@@ -34,7 +34,9 @@ export type ControlName =
   | "components"
   | "sort"
   | "aggregate"
-  | "groupByBed";
+  | "groupByBed"
+  | "bedType"
+  | "dateRange";
 
 /**
  * Single source of truth mapping each Print_Type to the set of controls
@@ -44,13 +46,13 @@ export type ControlName =
  * See design.md, "Components and Interfaces".
  */
 export const APPLICABILITY_MATRIX: Readonly<Record<PrintType, ReadonlySet<ControlName>>> = {
-  "radni-nalog":        new Set<ControlName>(["articles", "sort"]),
+  "radni-nalog":        new Set<ControlName>(["articles", "sort", "dateRange"]),
   "order":              new Set<ControlName>(),
-  "plan-utroska":       new Set<ControlName>(["articles", "departments", "sort"]),
-  "plan-utroska-rekapitulacija": new Set<ControlName>(["articles", "departments", "sort", "groupByBed"]),
+  "plan-utroska":       new Set<ControlName>(["articles", "departments", "sort", "bedType", "dateRange"]),
+  "plan-utroska-rekapitulacija": new Set<ControlName>(["articles", "departments", "sort", "groupByBed", "bedType", "dateRange"]),
   "etikete":            new Set<ControlName>(["articles", "parts", "sort"]),
   "pakovanje":          new Set<ControlName>(["articles", "components", "sort"]),
-  "zbirni-radni-nalog": new Set<ControlName>(["articles", "sort", "aggregate"]),
+  "zbirni-radni-nalog": new Set<ControlName>(["articles", "sort", "aggregate", "dateRange"]),
   "print-za-odjele":    new Set<ControlName>(["articles", "departments", "sort"]),
 };
 
@@ -66,6 +68,9 @@ export interface Selections {
   sort: readonly SortKey[];
   aggregate: boolean;
   groupByBed: boolean;
+  bedType: "all" | "Drveni" | "Metalni";
+  dateFrom: string; // YYYY-MM-DD or ""
+  dateTo: string;   // YYYY-MM-DD or ""
 }
 
 /**
@@ -81,6 +86,9 @@ export const EMPTY_SELECTIONS: Selections = {
   sort: [],
   aggregate: false,
   groupByBed: false,
+  bedType: "all",
+  dateFrom: "",
+  dateTo: "",
 };
 
 /**
@@ -99,6 +107,9 @@ export interface AppliedParams {
   sort: readonly SortKey[];
   aggregate: boolean;
   groupByBed: boolean;
+  bedType: "all" | "Drveni" | "Metalni";
+  dateFrom: string; // YYYY-MM-DD or ""
+  dateTo: string;   // YYYY-MM-DD or ""
 }
 
 /**
@@ -144,6 +155,15 @@ export function pruneNonApplicable(
     groupByBed: applicable.has("groupByBed")
       ? selections.groupByBed
       : EMPTY_SELECTIONS.groupByBed,
+    bedType: applicable.has("bedType")
+      ? selections.bedType
+      : EMPTY_SELECTIONS.bedType,
+    dateFrom: applicable.has("dateRange")
+      ? selections.dateFrom
+      : EMPTY_SELECTIONS.dateFrom,
+    dateTo: applicable.has("dateRange")
+      ? selections.dateTo
+      : EMPTY_SELECTIONS.dateTo,
   };
 }
 
@@ -282,6 +302,19 @@ export function buildPrintUrl(
 
   if (applicable.has("groupByBed") && s.groupByBed) {
     parts.push("groupByBed=1");
+  }
+
+  if (applicable.has("bedType") && s.bedType !== "all") {
+    parts.push(`bedType=${encodeURIComponent(s.bedType)}`);
+  }
+
+  if (applicable.has("dateRange")) {
+    if (s.dateFrom) {
+      parts.push(`dateFrom=${encodeURIComponent(s.dateFrom)}`);
+    }
+    if (s.dateTo) {
+      parts.push(`dateTo=${encodeURIComponent(s.dateTo)}`);
+    }
   }
 
   const base = useSingleOrder
@@ -435,7 +468,22 @@ export function readPrintParams(
     groupByBed = pickSingleParam(searchParams["groupByBed"]) === "1";
   }
 
-  return { articles, parts, departments, components, sort, aggregate, groupByBed };
+  let bedType: "all" | "Drveni" | "Metalni" = EMPTY_SELECTIONS.bedType;
+  if (applicable.has("bedType")) {
+    const raw = pickSingleParam(searchParams["bedType"]);
+    if (raw === "Drveni" || raw === "Metalni") bedType = raw;
+  }
+
+  let dateFrom: string = EMPTY_SELECTIONS.dateFrom;
+  let dateTo: string = EMPTY_SELECTIONS.dateTo;
+  if (applicable.has("dateRange")) {
+    const rawFrom = pickSingleParam(searchParams["dateFrom"]);
+    if (rawFrom && /^\d{4}-\d{2}-\d{2}$/.test(rawFrom)) dateFrom = rawFrom;
+    const rawTo = pickSingleParam(searchParams["dateTo"]);
+    if (rawTo && /^\d{4}-\d{2}-\d{2}$/.test(rawTo)) dateTo = rawTo;
+  }
+
+  return { articles, parts, departments, components, sort, aggregate, groupByBed, bedType, dateFrom, dateTo };
 }
 
 /**

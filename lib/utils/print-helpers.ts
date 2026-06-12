@@ -39,6 +39,7 @@ export interface PrintData {
     articleName: string;
     articleCode: string | null;
     articleDescription: string | null;
+    articleGroup: string | null;
     priceWithoutVAT: number | null;
     quantity: number;
     deliveryDeadline: Date | null;
@@ -477,6 +478,7 @@ export async function getPrintData(orderId: string): Promise<PrintData | null> {
       articleName: item.article.name,
       articleCode: item.article.code ?? null,
       articleDescription: item.article.description ?? null,
+      articleGroup: item.article.articleGroup ?? null,
       priceWithoutVAT: item.article.priceWithoutVAT ?? null,
       quantity: item.quantity,
       deliveryDeadline: item.deliveryDeadline ?? null,
@@ -557,6 +559,53 @@ export function filterItemsByArticle(
   return {
     ...data,
     items: data.items.filter((item) => articleNames.has(item.articleName)),
+  };
+}
+
+/**
+ * Bed type values used for filtering articles by frame type.
+ * "all" means no filtering (show both wooden and metal beds).
+ */
+export type BedType = "all" | "Drveni" | "Metalni";
+
+/**
+ * Filter items by articleGroup (bed type: Drveni or Metalni).
+ * When bedType is "all", returns data unchanged.
+ */
+export function filterItemsByBedType(
+  data: PrintData,
+  bedType: BedType
+): PrintData {
+  if (bedType === "all") return data;
+  return {
+    ...data,
+    items: data.items.filter((item) => item.articleGroup === bedType),
+  };
+}
+
+/**
+ * Filter items by delivery deadline (datum utovara) date range.
+ * When both dateFrom and dateTo are empty, returns data unchanged.
+ * Only includes items whose deliveryDeadline falls within the range.
+ * Items without a deliveryDeadline are excluded when a date range is active.
+ */
+export function filterItemsByDateRange(
+  data: PrintData,
+  dateFrom: string,
+  dateTo: string
+): PrintData {
+  if (!dateFrom && !dateTo) return data;
+  const from = dateFrom ? new Date(dateFrom + "T00:00:00") : null;
+  const to = dateTo ? new Date(dateTo + "T23:59:59.999") : null;
+  return {
+    ...data,
+    items: data.items.filter((item) => {
+      if (!item.deliveryDeadline) return false;
+      const d = new Date(item.deliveryDeadline);
+      if (from && d < from) return false;
+      if (to && d > to) return false;
+      return true;
+    }),
   };
 }
 
