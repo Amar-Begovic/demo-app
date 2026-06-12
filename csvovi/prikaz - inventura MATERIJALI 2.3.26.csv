@@ -1,0 +1,462 @@
+﻿"Demo Company d.o.o.
+76100 Brčko, Brod bb
+JIB: 4600471110010   PDV: 600471110002
+žiro-račun: 
+",,,,,,
+txtNazivSkladista,txtNazivKategorijeArtikla,RedniBroj,Sifra,NazivArtikla,JedinicaMjere,KOLICINA
+Sirovine,,,,,,
+,sirovina,,,,,
+,,5,860,"ABS BIJELI 22X0,8 BIJELA GLATKA",m,125.00
+,,6,937,ADHESIVE 15/1 KG - LJEPILO ZA SPUŽVU,kg,18.80
+,,7,49,Amortizer 1200 N,kom,240.00
+,,8,76,Amortizer 450 N S,kom,535.00
+,,9,54,Amortizer 750,kom,"4,722.00"
+,,10,1081,Aparat za traku,kom,10.00
+,,11,386,Brezon vijak M8x8,kom,"10,000.00"
+,,12,11,Bukova daska 25 mm L,m3,0.00
+,,13,391,Čelični ekser ST 25 za bazu,kom,37.20
+,,14,64,Čičak 20mm 25m Bijeli/Crni Tvrdi/Mehki P,m,"2,729.04"
+,,15,1076,Crijevo za zrak 5x8,kom,1.00
+,,16,958,"Daska 24 mm L - 3 m, suha",m3,-0.02
+,,17,809,"Daska 24mm - 3m, suha#",m3,18.22
+,,18,276,Daska Jelova,m3,0.00
+,,19,45,Drvena nogica AMOUR 15 cm crna R,kom,206.00
+,,20,40,DRVENA NOGICA AMOUR 17 CM (170X60/40) - CRNA,kom,940.00
+,,21,47,Drvena nogica VAL 120X60/47,kom,100.00
+,,22,288,Drvena nogica VINKLO 150x150/35 crna,kom,100.00
+,,23,115,Drvena nogica VINKLO 150x150x55 crna,kom,150.00
+,,24,48,DRVENA POMOĆNA NOGICA 170X40X40 crna,kom,500.00
+,,25,1015,DUGME SA EKSEROM ALUMINIJUM KAPSULE 32-H 17 GULER 500/1,kom,"1,500.00"
+,,26,1016,DUGME SA ZAKAČKOM ALUM/KAPSULE BO 32 AB6 500/1,kom,350.00
+,,27,494,"Dvostrana iverica 210x280x0,8 mm",m2,"2,005.80"
+,,28,500,Džepičasto jezgro 056x190x12 (67.120.4.180.00.0.0000) 09x30,kom,128.00
+,,29,501,Džepičasto jezgro 066x190x12 (67.120.4.180.00.0.0000) 11x30,kom,13.00
+,,30,502,Džepičasto jezgro 144x184x15 (65.150.4.180.00.0.0000) 24x29,kom,10.00
+,,31,503,Džepičasto jezgro 144x184x18 (65.180.4.180.00.0.0000) 24x29,kom,569.00
+,,32,504,Džepičasto jezgro 164x184x15(65.150.4.180.00.0.0000) 27x29,kom,36.00
+,,33,505,Džepičasto jezgro 164x184x18 (65.180.4.180.00.0.0000) 27x29,kom,281.00
+,,34,1212,Džepičasto jezgro 188x66x12 (29x11) x2 RTX,kom,40.00
+,,35,402,Eksauting presa,kom,1.00
+,,36,522,Elektrostatična farba u prahu,kg,750.00
+,,37,498,Filc 900 gr,kg,"4,920.96"
+,,38,14,Filc tvrdi 500 gr/m 210x2500,kg,0.00
+,,39,85,"Folija (3800x0,08) RE NP",kg,0.00
+,,40,795,"Folija transparent polucrijevo 3000x0,08 mm/rec",kg,566.00
+,,41,893,HDF BIJELI 2800X2070X3 MM,kom,0.00
+,,42,894,HDF SIROVI 2800X2070X3 MM,kom,0.00
+,,43,328,"Iver vijak 5,0x30 cink T",kom,"1,000.00"
+,,44,213,"Iver vijak 5,0x40 cink T",kom,"5,000.00"
+,,45,234,"Iver vijak JD 79/67,  5,0x60 cink",kom,"4,000.00"
+,,46,810,IVERICA 16MM 2800-2070 I KLASA,m2,933.42
+,,47,897,IVERICA 2800X2070X16 MM IT,m2,"1,000.00"
+,,48,858,IVERICA BIJELA 110 SM 2800X2070X16 MM,m2,809.43
+,,49,493,"Jednostrana iverica 210x280x0,8 mm",m2,"2,523.76"
+,,50,928,KARTON BIG ŠLIC TABLA 2800X260X100 E2T,kom,"1,650.00"
+,,51,929,KARTON BIG TRAKA 180X2300 T2Š,kom,440.00
+,,52,898,"Karton ploča 14/kg 1,5 mm 20 kom",pak,23.50
+,,53,1273,Keder za tapaciranje,m,"1,400.00"
+,,54,702,KLAMERICA 14/35 (10.000) - PAK,pak,0.00
+,,55,34,KLAMERICA 14/35 PAK 10000/1,milla,295.20
+,,56,32,Klamerica 380/10 delta 10.000/1 M,mil,301.25
+,,57,33,Klamerica staples 380/14 B,milla,85.10
+,,58,189,Klizač 7 N/L 1/100 p,kom,492.00
+,,59,604,Klizač teleskopski 45x40 M768-3,kom,24.00
+,,60,390,Klizač za uzglavlje 19cm,set,"4,388.00"
+,,61,17,Konac 36,kom,83.00
+,,62,1088,Konac za štepanje 40 DURATEX (3000m),kom,282.00
+,,63,1089,Konac za štepanje 60 DURATEX (5000m),kom,99.92
+,,64,1090,Konac za štepanje 70 DURATEX (17000m),kom,200.00
+,,65,419,Konac za štepanje 80 (20.000 mt),kom,60.00
+,,66,1087,Konac za štepanje 90 DURATEX (15000m),kom,199.97
+,,67,179,Kutija za pakovanje 380x280x140 N,kom,960.00
+,,68,387,Leptir matica M8 PVC,kom,"15,136.00"
+,,69,594,Leptir navrtka din315 M6 100/1,kom,"1,300.00"
+,,70,595,Leptir navrtka din315 M8 100/1,kom,"1,500.00"
+,,71,198,Lesonit bijeli 2800x2070x3 mm B1,kom,0.00
+,,72,37,Lesonit bijeli 3 mm B,m2,"1,182.97"
+,,73,41,"Lesonit sirovi 2,8x2,07 B",m2,"2,041.78"
+,,74,626,"LETVA 5X2,4",m3,0.00
+,,75,56,Ljepilo intercoll 1718 1/170 S,kg,0.00
+,,76,84,Ljepilo za drvo Vinavil 2252 30/1 K,kg,0.00
+,,77,86,Ljepilo za drvo Vinavil 2252 50/1 K,kg,155.34
+,,78,398,Ljepilo za spužvu,kg,"2,638.54"
+,,79,30,Ljepljiva traka 48x66 Prozirna/Solvent L (KOM),kom,0.00
+,,80,756,M. Vijak din 965 6x20,kom,"6,764.00"
+,,81,600,"M. Vijak din933 kv5,8 8x30",kom,200.00
+,,82,599,"M. Vijak din933 kv5,8 8x40",c,"2,400.00"
+,,83,598,M. Vijak din965 6x25,c,"4,200.00"
+,,84,424,Madrac platno  50021973 (280 gr) AT,m,3.54
+,,85,427,Madrac platno 10008386 (65 gr) +AT10001632 75 gr,m,"4,152.03"
+,,86,1205,Madrac platno 10010707 235 gr,m,199.56
+,,87,521,Madrac platno 200 gr 50022325,m,"3,531.00"
+,,88,520,Madrac platno 280 gr 50022324,m,"1,737.17"
+,,89,426,Madrac platno 50015679 (180 gr) AT,m,"4,291.60"
+,,90,423,Madrac platno 50016161 (190 gr) AT,m,594.00
+,,91,422,Madrac platno 50021965 (280 gr) AT,m,482.00
+,,92,421,Madrac platno 50021974 (220 gr) AT,m,440.00
+,,93,420,Madrac platno 50021976 (240 gr) AT,m,"3,268.04"
+,,94,865,Madrac platno 50022741 280gr,m,"1,710.99"
+,,95,384,Makaze za bazu,set,"2,301.00"
+,,96,389,"Mašinac 8x25-M. Vijak din 933 kv 5,8",kom,"5,068.00"
+,,97,1274,Masni konac,kom,10.00
+,,98,396,Matica M6,kom,"18,452.00"
+,,99,1082,Mehanizam-makaze za bazu DELUX,set,5.00
+,,100,773,Metalna nogica STS-D012 BLACK 150MM STICK B,kom,259.00
+,,101,531,Metalna ručka za bazu,kom,970.00
+,,102,1091,"Metalni element 9,5 cm za nogice",kom,"10,000.00"
+,,103,415,"Metalni profil 20x20x0,8 mm",m,"32,607.00"
+,,104,416,Metalni profili 20x30x1 mm,m,"23,254.00"
+,,105,629,Metar 3m M2407-1,kom,30.00
+,,106,630,Metar 5m M2407-2,kom,30.00
+,,107,496,Motor OK76458+DW9934+OK53996,kom,1.00
+,,108,495,Motor OK81295+DW9334HD24+OK53996+OK3.00.402.026.30,kom,1.00
+,,109,1207,Najlon za pakovanje 155x8+8x170 100 mic,kom,"1,040.00"
+,,110,1208,Najlon za pakovanje 155x8+8x190 100 mic,kom,600.00
+,,111,873,Najlon za pakovanje baze 80x16+16x245 100 mic,kom,"4,058.00"
+,,112,874,Najlon za pakovanje baze 90x16+16x245 100 mic,kom,"1,812.00"
+,,113,867,Najlon za pakovanje madraca 160x15+15x240 100mic,kom,"2,314.00"
+,,114,868,Najlon za pakovanje madraca 160x17+17x245 100mic,kom,400.00
+,,115,869,Najlon za pakovanje madraca 160x19+19x250 100mic,kom,221.00
+,,116,870,Najlon za pakovanje madraca 180x15+15x240 100mic,kom,"1,051.00"
+,,117,871,Najlon za pakovanje madraca 180x17+17x245 100mic,kom,455.00
+,,118,872,Najlon za pakovanje madraca 180x19+19x250 100 mic,kom,160.00
+,,119,875,Najlon za pakovanje uzglavlja 170x8+8x150 100 mic,kom,693.00
+,,120,876,Najlon za pakovanje uzglavlja 190x8+8x150 100 mic,kom,369.00
+,,121,1077,Nastavak za crijevo za zrak,kom,30.00
+,,122,1064,NOGICA 6036 BIJELA 12CM,kom,20.00
+,,123,286,Nogica 6052 black B 17cm,kom,70.00
+,,124,51,Nogica 8030 BLACK 13 cm B,kom,"-1,242.00"
+,,125,71,Nogica KALE 12cm Mat Crna M,kom,476.00
+,,126,1080,Nož za spužvu,kom,10.00
+,,127,42,Oplemenjena iverica bijela 16 mm B,m2,0.00
+,,128,12,Paspul Traka - Opšivna traka 40mm Bijela,m,0.00
+,,129,13,Paspul Traka - Opšivna traka 40mm Crna,m,"11,400.00"
+,,130,787,Paspul traka - Opšivna traka 45mm Bijela,m,"5,538.90"
+,,131,290,Paspul traka 42 mm Bijela T,m,"10,000.00"
+,,132,450,Paspul traka antracit bijela 45 mm,m,"1,800.00"
+,,133,454,Paspul traka antracit crna 45 mm,m,"3,700.00"
+,,134,452,Paspul traka bež/bijela 45 mm,m,"4,500.00"
+,,135,449,Paspul traka bež/crna 45 mm,m,"-1,560.00"
+,,136,455,Paspul traka bijela 42 mm,m,"15,000.00"
+,,137,456,Paspul traka crna 42 mm,m,"4,400.00"
+,,138,1086,Paspul traka crna 45mm,m,"15,000.00"
+,,139,451,Paspul traka siva/bijela 45 mm,m,"2,000.00"
+,,140,793,Piling 220x40x2,kg,404.40
+,,141,826,Piling 220x80x1,kg,195.10
+,,142,392,Pištolj za čelični ekser za bazu,kom,2.00
+,,143,1085,Pištolj za pumpu za bacanje ljepila,kom,2.00
+,,144,1075,Pištolj za tapaciranje 80/16 AKD,kom,6.00
+,,145,1078,Pištolj za zrak dugi,kom,2.00
+,,146,1079,Pištolj za zrak kratki,kom,2.00
+,,147,1228,Plastična nogica crna 13/18,kom,"1,050.00"
+,,148,812,Platno - Vellsoft antrasit,m,42.31
+,,149,811,Platno - Vellsoft natural,m,290.00
+,,150,57,Platno za madrace J49 280 gr. JT,m,0.00
+,,151,394,Podloška 1/4 6M 1mm,kg,-304.00
+,,152,90,"Podloška DIN 9021, M8",kom,"4,876.00"
+,,153,94,PU Format 50 V O,kg,0.00
+,,154,96,PU Oblikovani 20 T piling - 150 O,kg,0.00
+,,155,95,PU Oblikovani 20 T piling - 210 O,kg,"2,452.61"
+,,156,97,PU Oblikovani 20 T Piling O,kg,0.00
+,,157,813,PU Oblikovani 20T piling - 140 O,kg,252.00
+,,158,1084,Pumpa za bacanje ljepila,kom,1.00
+,,159,818,PVC BOHAM NOGICA 12CM CRNA,kom,980.00
+,,160,819,PVC BOHAM NOGICA 15CM CRNA,kom,"3,800.00"
+,,161,822,PVC držač za ivericu,kom,"21,428.00"
+,,162,824,PVC element 25x19 za ćoškove baze,kom,"1,840.00"
+,,163,542,PVC nogica 12 cm STAR bijela,kom,450.00
+,,164,541,PVC nogica 12 cm STAR crna,kom,688.00
+,,165,543,PVC nogica 12 cm STAR krom,kom,475.00
+,,166,533,PVC nogica sa navojem 12 cm bijela KRUŠKA,kom,320.00
+,,167,532,PVC nogica sa navojem 12 cm crna KRUŠKA,kom,"4,864.00"
+,,168,538,PVC nogica sa navojem smeđa KRUŠKA,kom,330.00
+,,169,399,PVC Nogica VINKLO 14x14x4 cm,kom,"3,150.00"
+,,170,400,PVC pomoćna nogica 4 cm,kom,"1,608.00"
+,,171,821,PVC prsten za kapak 3cm,kom,"8,840.00"
+,,172,536,PVC ručka za bazu bijela,kom,388.00
+,,173,823,PVC ručka za kapak za bazu,kom,"2,500.00"
+,,174,534,PVC skrivena nogica 6 cm,kom,"2,000.01"
+,,175,535,PVC stoper (okrugli) za bazu,kom,"6,644.00"
+,,176,820,PVC zaštitnik (osigurač crveni),kom,"3,500.00"
+,,177,825,PVC zaštitnik za bazu,kom,"11,488.00"
+,,178,178,Rajfešlus 7 metražni 1/100 P,m,"3,344.80"
+,,179,65,"Reteks 120 gr, 200 cm Art, Stichpond, crni T",m2,"1,848.69"
+,,180,279,"Reteks 14 gr, 160 cm bijeli  t",m2,"9,600.00"
+,,181,88,"Reteks 14 gr, 210 cm bijeli T",m2,"91,411.08"
+,,182,933,"Reteks 40 gr, 160 cm bijeli",m2,"2,560.00"
+,,183,794,"Reteks 70 gr, 160 cm crni",m2,"5,547.52"
+,,184,953,"Reteks 70 gr, 205 cm, crni",m2,968.20
+,,185,67,"Reteks 70 gr/m 1,6 m širina - Crni B1",m,0.00
+,,186,437,Ručke za madrace 11/14 5x30,kom,"1,252.00"
+,,187,436,Ručke za madrace 19/20 5x30,kom,"1,256.00"
+,,188,192,Ručkica ukopavajuća kocka B,kom,70.00
+,,189,1083,Rukavice za varioce,kom,50.00
+,,190,932,"Samor. Vijak 7504p 3,9x32",kom,"5,000.00"
+,,191,617,Selotejp 48mm x 66m (000588),kom,0.00
+,,192,569,Selotejp 48mmx66m - Super clear I,kom,328.64
+,,193,38,Sirova iverica  16 mm B,m3,0.00
+,,194,1206,Sirova iverica 18 mm,m2,47.04
+,,195,340,Skrivena PVC nogica 12cm - crna,kom,170.00
+,,196,220,Skrivena štelujuća nogica 13 cm - Crna,kom,"1,440.00"
+,,197,864,Skrivena štelujuća nogica 15cm - Crna,kom,875.00
+,,198,242,"Skrivena štelujuća nogica 16,80 cm- Crna",kom,770.00
+,,199,417,Spužva 18kg 210x1 cm,m3,99.33
+,,200,281,Spužva HR 3536 SP,kg,"1,546.50"
+,,201,180,Spužva Mljevena,kg,304.50
+,,202,883,Spužva NF 1830 SP,kg,104.40
+,,203,35,Spužva PU Format 20T O,kg,0.00
+,,204,36,Spužva PU Format 25T O,kg,0.00
+,,205,44,Spužva PU Format 30T O,kg,0.00
+,,206,93,Spužva PU Format 35 HR O,kg,0.00
+,,207,303,Spužva VA 4015 SP,kg,874.99
+,,208,302,Spužva VH 2130 SP,kg,"1,026.96"
+,,209,232,Spužva VH 2538 SP,kg,"5,598.91"
+,,210,486,Spužva VH 3040 SP,kg,141.20
+,,211,300,Spužva VH 3050 SP,kg,0.00
+,,212,1187,Štancana kutija - Kartonski poklopac samosklopivi manji,kom,"3,835.00"
+,,213,70,Štep deka madrac platno,m,0.00
+,,214,238,Štep deka Monolith,m,7.00
+,,215,1151,Štep deka Zenit,m,8.00
+,,216,1143,Štof Adventure 23,m,8.00
+,,217,206,Štof Alhambra 101 S,m,95.00
+,,218,248,Štof Almeria 103 (Bari 102) SE,m,8.00
+,,219,283,Štof Almeria 108 (Bari 109) SE,m,97.40
+,,220,209,Štof Amsterdam 103,m,19.00
+,,221,120,Štof Amsterdam 105,m,19.00
+,,222,215,Štof Amsterdam 110,m,16.00
+,,223,879,Štof Aurum 107,m,161.30
+,,224,63,Štof Aurum 126,m,0.00
+,,225,1238,Štof Bari 104,m,10.00
+,,226,612,Štof Bari 106,m,3.50
+,,227,330,Štof Bari 110,m,3.50
+,,228,960,Štof Barrel 09,m,21.00
+,,229,699,Štof Camel 002,m,16.00
+,,230,121,Štof Camel 102,m,"-1,301.08"
+,,231,615,Štof Camel 103,m,147.90
+,,232,912,Štof Camel 105,m,15.00
+,,233,616,Štof Camel 118,m,100.70
+,,234,698,Štof Camel 135,m,15.51
+,,235,236,Štof Camel 200,m,0.01
+,,236,344,Štof Castel 15,m,10.00
+,,237,1295,Štof Castel 20,m,15.00
+,,238,377,Štof Castel 74,m,3.50
+,,239,575,Štof Castel 93,m,51.60
+,,240,747,Štof Cloud 03,m,27.70
+,,241,1067,Štof Cloud 33,m,15.00
+,,242,978,Štof Cloud 39,m,5.00
+,,243,748,Štof Cloud 60,m,8.00
+,,244,572,Štof Cloud 81,m,23.70
+,,245,854,Štof Cloud 83,m,7.80
+,,246,1230,Štof Cloud 84,m,15.00
+,,247,790,Štof Cloud 87,m,4.00
+,,248,1065,Štof Cloud 91,m,27.30
+,,249,345,Štof Cremona 02,m,51.00
+,,250,1296,Štof Cremona 81,m,9.00
+,,251,1297,Štof ELEGANT WISH 02,m,45.30
+,,252,79,Štof Europa 103 S,m,0.00
+,,253,459,Štof Ferrum 102 AL,m,118.20
+,,254,275,Štof Helena 103,m,201.60
+,,255,277,Štof Helena 118,m,69.10
+,,256,82,Štof Helena 135,m,26.00
+,,257,191,Štof Helena 34,m,122.20
+,,258,611,Štof Helena 79,m,334.70
+,,259,625,Štof Jasmine 24,m,41.00
+,,260,697,Štof Jupiter 106,m,10.00
+,,261,1149,Štof Landscape 95,m,15.00
+,,262,509,Štof Letto 11,m,16.00
+,,263,580,Štof Loris 01,m,39.50
+,,264,305,Štof Loris 05,m,25.00
+,,265,354,Štof Loris 09,m,30.00
+,,266,355,Štof Loris 14,m,8.00
+,,267,9,Štof Loris 16,m,20.00
+,,268,490,Štof Loris 39,m,17.00
+,,269,842,Štof Loris 77,m,8.01
+,,270,351,Štof Loris 79,m,7.50
+,,271,117,Štof Loris 90,m,59.10
+,,272,432,Štof Lotus 16,m,5.00
+,,273,378,Štof Luis 16,m,9.00
+,,274,1239,Štof Luis 85,m,3.00
+,,275,480,Štof MALMO NEW 94,m,46.00
+,,276,368,Štof MALMO NEW 96,m,11.01
+,,277,218,Štof Matt Velvet 06,m,307.00
+,,278,217,Štof Matt Velvet 08,m,297.70
+,,279,6,Štof Matt Velvet 09,m,139.30
+,,280,855,Štof Matt Velvet 29,m,22.00
+,,281,750,Štof Matt Velvet 34,m,21.50
+,,282,749,Štof Matt Velvet 38,m,24.80
+,,283,252,Štof Matt Velvet 61,m,48.50
+,,284,483,Štof Matt Velvet 73,m,57.60
+,,285,24,Štof Matt Velvet 74,m,8.00
+,,286,10,Štof Matt Velvet 77,m,21.50
+,,287,27,Štof Matt Velvet 79,m,12.50
+,,288,350,Štof Matt Velvet 83,m,10.00
+,,289,343,Štof Matt Velvet 85,m,45.00
+,,290,349,Štof Matt Velvet 93,m,40.00
+,,291,211,Štof Matt Velvet 97,m,65.90
+,,292,1150,Štof Mirage 102 S,m,27.00
+,,293,980,Štof MISTERIO 03,m,103.61
+,,294,519,Štof MISTERIO 04,m,553.70
+,,295,981,Štof MISTERIO 14,m,19.01
+,,296,982,Štof MISTERIO 72,m,8.01
+,,297,983,Štof MISTERIO 80,m,81.61
+,,298,984,Štof MISTERIO 82,m,51.01
+,,299,1068,Štof MISTERIO 90,m,37.50
+,,300,862,Štof Moca 10,m,221.00
+,,301,946,Štof Moly 37,m,8.01
+,,302,20,Štof Monolith 02,m,31.10
+,,303,119,Štof Monolith 04,m,18.50
+,,304,202,Štof Monolith 09,m,4.50
+,,305,559,Štof Monolith 20,m,15.00
+,,306,230,Štof Monolith 37,m,40.90
+,,307,221,Štof Monolith 38,m,29.00
+,,308,1265,Štof Monolith 69,m,16.00
+,,309,514,Štof Monolith 70,m,24.00
+,,310,181,Štof Monolith 76,m,14.00
+,,311,201,Štof Monolith 77,m,51.00
+,,312,75,Štof Monolith 84,m,112.20
+,,313,19,Štof Monolith 85,m,105.70
+,,314,18,Štof Monolith 92,m,122.80
+,,315,899,Štof Monolith 95,m,46.35
+,,316,507,Štof Monolith 97,m,7.00
+,,317,1200,Štof Montana 107 (Terra 107),m,128.00
+,,318,947,Štof Monte 03,m,51.80
+,,319,1066,Štof Mossa 89,m,10.00
+,,320,460,Štof Nabuk 101,m,21.51
+,,321,896,Štof Nabuk 103,m,-874.40
+,,322,614,Štof Nabuk 108,m,42.30
+,,323,856,Štof Neve 80,m,8.00
+,,324,1144,Štof Neve 85,m,20.00
+,,325,366,Štof Neve 97,m,60.00
+,,326,1069,Štof NOW OR NEVER 02,m,25.00
+,,327,1156,Štof NOW OR NEVER 61,m,10.00
+,,328,608,Štof Orion 101,m,103.31
+,,329,241,Štof Orion 102 (Mal. 1249),m,10.00
+,,330,948,Štof OVERTHEHORIZON 08,m,17.83
+,,331,367,Štof PERFECT HARMONY 01,m,33.90
+,,332,348,Štof PERFECT HARMONY 02,m,28.60
+,,333,752,Štof PERFECT HARMONY 07,m,20.00
+,,334,379,Štof Point 04,m,11.00
+,,335,235,Štof Point 13,m,23.50
+,,336,240,Štof Point 34,m,85.00
+,,337,515,Štof Point 39,m,17.00
+,,338,508,Štof Point 86,m,11.00
+,,339,623,Štof Point 90,m,11.50
+,,340,212,Štof Preston 100,m,38.00
+,,341,223,Štof Preston 20,m,145.90
+,,342,188,Štof Preston 21,m,42.00
+,,343,369,Štof Preston 22,m,18.00
+,,344,287,Štof Preston 23,m,62.00
+,,345,364,Štof Preston 24,m,23.00
+,,346,190,Štof Preston 29,m,26.00
+,,347,8,Štof Preston 32,m,104.80
+,,348,613,Štof Preston 94,m,15.00
+,,349,222,Štof Preston 96,m,20.00
+,,350,1145,Štof Puente 06,m,13.00
+,,351,843,Štof Puente 80,m,48.81
+,,352,1263,Štof QUELLE 01,m,108.20
+,,353,1202,Štof QUELLE 02,m,43.50
+,,354,1070,Štof QUELLE 03,m,237.90
+,,355,362,Štof Riviera 16,m,16.00
+,,356,21,Štof Riviera 21,m,67.00
+,,357,110,Štof Riviera 24,m,4.00
+,,358,985,Štof Riviera 59,m,16.01
+,,359,986,Štof Riviera 60,m,31.01
+,,360,895,Štof Riviera 63,m,25.00
+,,361,696,Štof Riviera 69,m,8.50
+,,362,210,Štof Riviera 74,m,27.00
+,,363,113,Štof Riviera 79,m,17.00
+,,364,244,Štof Riviera 80,m,50.00
+,,365,112,Štof Riviera 82,m,80.20
+,,366,183,Štof Riviera 87,m,9.50
+,,367,111,Štof Riviera 91 (Helena 121),m,168.80
+,,368,347,Štof Riviera 95,m,42.00
+,,369,282,Štof Riviera 96,m,34.00
+,,370,5,Štof Riviera 97,m,38.20
+,,371,68,Štof Royal 27 (Helena 108),m,339.60
+,,372,847,Štof Runagain 06,m,7.00
+,,373,844,Štof Runo 03,m,6.50
+,,374,1231,Štof Runo 26,m,15.00
+,,375,1074,Štof Runo 97,m,25.00
+,,376,1071,Štof SCALA 82,m,15.00
+,,377,1072,Štof SCALA 92,m,15.00
+,,378,1298,Štof SEAL 18,m,20.00
+,,379,987,Štof SEAL 38,m,4.00
+,,380,22,Štof Soro 21,m,54.60
+,,381,371,Štof Soro 90,m,12.01
+,,382,482,Štof Storm 02,m,15.00
+,,383,1266,Štof Storm 06,m,10.00
+,,384,1264,Štof Storm 09,m,20.00
+,,385,1267,Štof Storm 48,m,10.00
+,,386,1059,Štof TENDERWAY 90,m,3.00
+,,387,1073,Štof Terra 06,m,15.00
+,,388,253,Štof Terra 13,m,12.50
+,,389,1147,Štof Terra 33,m,29.00
+,,390,1148,Štof Terra 48,m,2.00
+,,391,1055,Štof Terra M 103,m,96.90
+,,392,219,Štof Today 03,m,283.70
+,,393,254,Štof Today 13,m,61.10
+,,394,988,Štof Today 85,m,3.00
+,,395,1146,Štof Vibe 03,m,8.00
+,,396,950,Štof Vibe 06,m,15.00
+,,397,1232,Štof Vibe 39,m,15.00
+,,398,361,Štof Wind 05,m,35.00
+,,399,610,Štof Wind 31,m,6.00
+,,400,609,Štof Wind 76,m,9.00
+,,401,489,Štof Wind 80,m,23.00
+,,402,1256,Štof za sve,m,-30.08
+,,403,81,Štof Zenit 103- mal 2123,m,27.00
+,,404,69,Štof Zenit 108 S- mal 2128,m,114.90
+,,405,80,Štof Zenit 215 S - mal. 2132,m,166.10
+,,406,214,Štof-Mal. 4015 S-Etna 020,m,11.00
+,,407,388,Stolna matica M8,kom,"48,344.00"
+,,408,31,Streč folija 23my 5kg,rol,44.10
+,,409,118,"Tablet džepičasto jezgro 146x188x3,8 NY",kom,15.00
+,,410,205,"Tablet džepičasto jezgro 166x188x3,8 NY",kom,20.00
+,,411,513,Termo vata (filc) 100 gr (210) A,kg,381.48
+,,412,58,Termo vata (filc) 100 gr A,kg,0.00
+,,413,477,Termo vata (filc) 100gr (150) A,kg,96.00
+,,414,589,Termo vata (filc) 500 gr (210 cm) A,kg,120.00
+,,415,55,Termo vata 200g/210 cm AK,kg,544.68
+,,416,857,Termo vata 300 gr/3x75cm,kg,329.80
+,,417,102,Termo vata 300g/210 cm AK,kg,221.18
+,,418,570,Termo vata 300g/2x75cm AK,kg,0.00
+,,419,796,Termo vata 300gr/180cm,kg,70.00
+,,420,442,Tiket za ćoškove madraca sivi 10x48,kom,500.00
+,,421,443,Tiket za ćoškove madraca smeđi 10x48,kom,500.00
+,,422,446,Tiket za madrace 12x16,kom,630.00
+,,423,444,Tiket za uzglavlje sivi 5x10,kom,400.00
+,,424,445,Tiket za uzglavlje smeđi 5x10,kom,400.00
+,,425,78,Titan 101 (Amsterdam 102) SE,m,30.00
+,,426,395,Torban 6x40,kom,"25,422.00"
+,,427,226,Torban vijak M6x100 cink T,kom,"1,166.00"
+,,428,1092,"TRAKA BIJELA 22X0,8",m,330.00
+,,429,1201,TRAKA BIJELA 22X1,m,"1,860.00"
+,,430,372,Trougaona nožica h15 - crna E (4511),kom,560.00
+,,431,1203,Ulje za mašine,kom,20.00
+,,432,83,Unit Matica M6x9 T,kom,"12,820.00"
+,,433,39,Unit Matica M8x11 T,kom,"8,736.00"
+,,434,859,USLUGA REZANJA,Kom,566.00
+,,435,1131,Valoviti karton BIGOVANA TRAKA 250X3000,kom,980.00
+,,436,1132,Valoviti karton Kartonska traka bigovana,kom,"4,120.00"
+,,437,285,"Vijak DIN 933-8,8, M8x80 cink T",kom,"4,988.00"
+,,438,231,"Vijak DIN 933-8.8, M8x40 - cink T",kom,"2,176.00"
+,,439,52,"Vijak konusni DIN 965-4,8, M6x30, cink T",kom,900.00
+,,440,434,"Vijak konusni DIN 965-4,8, M6x40, cink T",kom,"2,450.00"
+,,441,393,"Vijak samorezač 3,9x22",kom,"22,952.00"
+,,442,1159,"Vijak za ivericu 4,5x30",kom,"2,000.00"
+,,443,1160,Vijak za ivericu 4x40 100/1,kom,"2,000.00"
+,,444,603,Vijak za ivericu 5x30 100/1,kom,"5,000.00"
+,,445,798,Vijak za ivericu 5x35 100/1,kom,"6,000.00"
+,,446,606,Vijak za ivericu 5x40 100/1,kom,"4,000.00"
+,,447,774,Žič. Jezgro 188x126x11 A,kom,22.00
+,,448,204,Žič. Jezgro 188x66x11 A,kom,24.00
+,,449,203,Žič. Jezgro 188x76x11 A,kom,20.00
+,,450,397,"Žica za varenje za CO2 0,8 mm",kg,660.00
+,,451,60,Žičano jezgro 106x188x14 NY,kom,19.00
+,,452,62,Žičano jezgro 126x188x14 NY,kom,46.00
+,,453,850,Žičano jezgro 146x186 (84.150.5.220.00.0.0000) 14x24,kom,194.00
+,,454,995,Žičano jezgro 146x186x18 13x23,kom,100.01
+,,455,851,Žičano jezgro 166x186 (84.150.5.220.00.0.0000) 16x24,kom,80.01
+,,456,996,Žičano jezgro 166x186x18 15x23,kom,50.01
+,,457,208,Žičano jezgro 166x188x14 NY,kom,7.00
+,,458,359,Žičano jezgro 188x78x11 A,kom,6.00

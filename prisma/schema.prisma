@@ -1,0 +1,535 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Enums ───────────────────────────────────────────────
+
+enum ProductionOrderStatus {
+  draft
+  waiting_material
+  ready
+  in_progress
+  completed
+}
+
+enum WorkOrderStatus {
+  pending
+  in_progress
+  completed
+}
+
+enum PurchaseOrderStatus {
+  pending
+  ordered
+  received
+}
+
+enum BarcodeType {
+  work_order
+  product
+  part_identifier
+}
+
+enum OrderPriority {
+  urgent
+  normal
+  low
+}
+
+enum StockChangeType {
+  inflow
+  outflow
+  adjustment
+}
+
+// ─── Models ──────────────────────────────────────────────
+
+model Material {
+  id              String   @id @default(uuid())
+  name            String
+  unit            String
+  code            String?  @unique
+  price           Float?
+  currentQuantity Float    @default(0)
+  minimumQuantity Float    @default(0)
+  hasDimensions   Boolean  @default(false)
+  isEdgebanded    Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  suppliers                 SupplierMaterial[]
+  purchaseOrders            PurchaseOrder[]
+  stepMaterials             StepMaterial[]
+  stockHistory              StockHistory[]
+  fabrics                   Fabric[]
+  nogice                    Nogica[]
+  rucke                     Rucka[]
+  paspuli                   Paspul[]
+  legs                      Leg[]
+  normativeVersionMaterials NormativeVersionMaterial[]
+  purchaseHistory           MaterialPurchaseHistory[]
+}
+
+model Fabric {
+  id          String   @id @default(uuid())
+  name        String
+  code        String?  @unique
+  description String?
+  color       String?
+  materialId  String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  material             Material?             @relation(fields: [materialId], references: [id], onDelete: SetNull)
+  productionOrderItems ProductionOrderItem[]
+}
+
+model Supplier {
+  id           String   @id @default(uuid())
+  companyName  String
+  code         String?  @unique
+  type         String?
+  partnerType  String?  @default("oba")
+  vatStatus    String?
+  vatNumber    String?
+  registration String?
+  country      String?  @default("Bosna i Hercegovina")
+  city         String?
+  postalCode   String?
+  address      String?
+  contactEmail String?
+  contactPhone String?
+  createdAt    DateTime @default(now())
+
+  materials      SupplierMaterial[]
+  purchaseOrders PurchaseOrder[]
+  purchaseHistory MaterialPurchaseHistory[]
+}
+
+model SupplierMaterial {
+  supplierId String
+  materialId String
+
+  supplier Supplier @relation(fields: [supplierId], references: [id], onDelete: Cascade)
+  material Material @relation(fields: [materialId], references: [id], onDelete: Cascade)
+
+  @@id([supplierId, materialId])
+}
+
+model Department {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  createdAt   DateTime @default(now())
+
+  workOrders            WorkOrder[]
+  productionSteps       ProductionStep[]
+  normativeVersionSteps NormativeVersionStep[]
+}
+
+model Article {
+  id              String   @id @default(uuid())
+  name            String
+  description     String?
+  dimensions      String?
+  code            String?  @unique
+  model           String?
+  type            String?
+  articleGroup    String?
+  unit            String?
+  inactive        Boolean  @default(false)
+  currency        String?  @default("BAM")
+  priceWithoutVAT Float?
+  taxPercentage      Float?   @default(17.0)
+  relatedArticleCode String?
+  createdAt          DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  parts                ArticlePart[]
+  productionOrders     ProductionOrder[]
+  productionOrderItems ProductionOrderItem[]
+  normativeVersions    NormativeVersion[]
+}
+
+model ArticlePart {
+  id        String   @id @default(uuid())
+  articleId String
+  partName  String
+  dimensions String?
+  notes     String?
+  createdAt DateTime @default(now())
+
+  article Article @relation(fields: [articleId], references: [id], onDelete: Cascade)
+
+  workOrders        WorkOrder[]
+  productionSteps   ProductionStep[]
+  barcodes          Barcode[]
+  componentBarcodes ComponentBarcode[]
+
+  @@index([articleId])
+}
+
+model ProductionStep {
+  id            String   @id @default(uuid())
+  articlePartId String
+  stepName      String
+  sequenceOrder Int
+  departmentId  String
+  estimatedTime Int?
+  instructions  String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  articlePart ArticlePart @relation(fields: [articlePartId], references: [id], onDelete: Cascade)
+  department  Department  @relation(fields: [departmentId], references: [id])
+  workOrders  WorkOrder[]
+  materials   StepMaterial[]
+
+  @@unique([articlePartId, sequenceOrder])
+}
+
+model ProductionOrder {
+  id                 String                @id @default(uuid())
+  orderNumber        Int                   @unique @default(autoincrement())
+  articleId          String?
+  customerName       String?
+  customerPhone      String?
+  documentNumber     String?
+  deliveryLocation   String?
+  receivedBy         String?
+  quantity           Int?
+  status             ProductionOrderStatus @default(draft)
+  isArchived         Boolean               @default(false)
+  normativeVersionId String?
+  workOrderNumber    String?
+  workOrderDate      DateTime?
+  createdAt          DateTime              @default(now())
+  updatedAt          DateTime              @updatedAt
+
+  article           Article?           @relation(fields: [articleId], references: [id])
+  normativeVersion  NormativeVersion?  @relation(fields: [normativeVersionId], references: [id])
+  items             ProductionOrderItem[]
+  purchaseOrders    PurchaseOrder[]
+  workOrders        WorkOrder[]
+  barcodes          Barcode[]
+  componentBarcodes ComponentBarcode[]
+
+  @@index([normativeVersionId])
+  @@index([articleId])
+}
+
+model PurchaseOrder {
+  id                String              @id @default(uuid())
+  productionOrderId String?
+  materialId        String
+  supplierId        String?
+  requiredQuantity  Float
+  status            PurchaseOrderStatus @default(pending)
+  createdAt         DateTime            @default(now())
+  receivedAt        DateTime?
+
+  productionOrder ProductionOrder? @relation(fields: [productionOrderId], references: [id], onDelete: Cascade)
+  material        Material         @relation(fields: [materialId], references: [id])
+  supplier        Supplier?        @relation(fields: [supplierId], references: [id])
+}
+
+model WorkOrder {
+  id                       String          @id @default(uuid())
+  productionOrderId        String
+  articlePartId            String
+  departmentId             String
+  productionStepId         String?
+  normativeVersionStepId   String?
+  stepSequence             Int?
+  itemIndex                Int
+  status                   WorkOrderStatus @default(pending)
+  startedAt                DateTime?
+  completedAt              DateTime?
+  createdAt                DateTime        @default(now())
+
+  productionOrder      ProductionOrder       @relation(fields: [productionOrderId], references: [id], onDelete: Cascade)
+  articlePart          ArticlePart           @relation(fields: [articlePartId], references: [id])
+  department           Department            @relation(fields: [departmentId], references: [id])
+  productionStep       ProductionStep?       @relation(fields: [productionStepId], references: [id])
+  normativeVersionStep NormativeVersionStep? @relation(fields: [normativeVersionStepId], references: [id])
+  barcode              Barcode?
+
+  @@index([productionOrderId])
+  @@index([articlePartId])
+  @@index([departmentId])
+}
+
+model Barcode {
+  id                String      @id @default(uuid())
+  value             String      @unique
+  type              BarcodeType
+  workOrderId       String?     @unique
+  productionOrderId String?
+  articlePartId     String?
+  itemIndex         Int?
+  createdAt         DateTime    @default(now())
+
+  workOrder       WorkOrder?       @relation(fields: [workOrderId], references: [id])
+  productionOrder ProductionOrder? @relation(fields: [productionOrderId], references: [id])
+  articlePart     ArticlePart?     @relation(fields: [articlePartId], references: [id])
+
+  @@index([productionOrderId])
+  @@index([articlePartId])
+  @@unique([productionOrderId, articlePartId, itemIndex, type], name: "unique_part_identifier")
+}
+
+model StepMaterial {
+  id               String   @id @default(uuid())
+  productionStepId String
+  materialId       String
+  quantity         Float
+  pieces           Float?
+  length           Float?
+  width            Float?
+  height           Float?
+  isEdgebanded     Boolean?
+
+  productionStep ProductionStep @relation(fields: [productionStepId], references: [id], onDelete: Cascade)
+  material       Material       @relation(fields: [materialId], references: [id])
+
+  @@index([productionStepId, materialId])
+}
+
+model ProductionOrderItem {
+  id                  String        @id @default(uuid())
+  productionOrderId   String
+  articleId           String
+  quantity            Int
+  fabricId            String?
+  legId               String?
+  ruckaId             String?
+  paspulId            String?
+  nogice1Id           String?
+  nogice2Id           String?
+  deliveryDeadline    DateTime?
+  priority            OrderPriority @default(normal)
+  notes               String?
+  customerOrderNumber String    @default("")
+  loadingNumber       String?
+  loadingSequence     Int?
+  serialNumber        String?
+  withLegs            Boolean       @default(false)
+  step                String?
+
+  productionOrder ProductionOrder @relation(fields: [productionOrderId], references: [id], onDelete: Cascade)
+  article         Article         @relation(fields: [articleId], references: [id])
+  fabric          Fabric?         @relation(fields: [fabricId], references: [id])
+  leg             Leg?            @relation(fields: [legId], references: [id], onDelete: SetNull)
+  rucka           Rucka?          @relation(fields: [ruckaId], references: [id], onDelete: SetNull)
+  paspul          Paspul?         @relation(fields: [paspulId], references: [id], onDelete: SetNull)
+  nogice1         Nogica?         @relation("nogice1", fields: [nogice1Id], references: [id], onDelete: SetNull)
+  nogice2         Nogica?         @relation("nogice2", fields: [nogice2Id], references: [id], onDelete: SetNull)
+
+  @@index([productionOrderId, articleId, fabricId, customerOrderNumber])
+  @@index([articleId])
+  @@index([fabricId])
+  @@index([legId])
+  @@index([serialNumber])
+}
+
+model AuditLog {
+  id          String   @id @default(uuid())
+  timestamp   DateTime @default(now())
+  entityType  String
+  entityId    String
+  action      String
+  details     Json
+  performedBy String?
+
+  @@index([entityType, entityId])
+  @@index([timestamp])
+}
+
+model StockHistory {
+  id               String          @id @default(uuid())
+  materialId       String
+  changeType       StockChangeType
+  quantity         Float
+  previousQuantity Float
+  newQuantity      Float
+  referenceType    String?
+  referenceId      String?
+  notes            String?
+  createdAt        DateTime        @default(now())
+
+  material Material @relation(fields: [materialId], references: [id], onDelete: Cascade)
+
+  @@index([materialId, createdAt])
+}
+
+model ComponentBarcode {
+  id                String   @id @default(uuid())
+  value             String   @unique
+  productionOrderId String
+  articlePartId     String?
+  componentName     String
+  itemIndex         Int
+  createdAt         DateTime @default(now())
+
+  productionOrder ProductionOrder @relation(fields: [productionOrderId], references: [id], onDelete: Cascade)
+  articlePart     ArticlePart?    @relation(fields: [articlePartId], references: [id], onDelete: Cascade)
+
+  packagingScan PackagingScan?
+
+  @@index([articlePartId])
+  @@unique([productionOrderId, componentName, itemIndex], name: "unique_component_barcode")
+}
+
+model PackagingScan {
+  id                 String   @id @default(uuid())
+  componentBarcodeId String   @unique
+  scannedAt          DateTime @default(now())
+  scannedBy          String?
+
+  componentBarcode ComponentBarcode @relation(fields: [componentBarcodeId], references: [id], onDelete: Cascade)
+}
+
+model NormativeVersion {
+  id            String   @id @default(uuid())
+  articleId     String
+  versionNumber Int
+  createdAt     DateTime @default(now())
+  isActive      Boolean  @default(true)
+
+  article          Article                @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  productionOrders ProductionOrder[]
+  parts            NormativeVersionPart[]
+
+  @@unique([articleId, versionNumber])
+  @@index([articleId, isActive])
+}
+
+model NormativeVersionPart {
+  id                 String   @id @default(uuid())
+  normativeVersionId String
+  partName           String
+  dimensions         String?
+  notes              String?
+  createdAt          DateTime @default(now())
+
+  normativeVersion NormativeVersion       @relation(fields: [normativeVersionId], references: [id], onDelete: Cascade)
+  steps            NormativeVersionStep[]
+
+  @@index([normativeVersionId])
+}
+
+model NormativeVersionStep {
+  id                     String   @id @default(uuid())
+  normativeVersionPartId String
+  stepName               String
+  sequenceOrder          Int
+  departmentId           String
+  estimatedTime          Int?
+  instructions           String?
+  createdAt              DateTime @default(now())
+
+  part       NormativeVersionPart       @relation(fields: [normativeVersionPartId], references: [id], onDelete: Cascade)
+  department Department                 @relation(fields: [departmentId], references: [id])
+  materials  NormativeVersionMaterial[]
+  workOrders WorkOrder[]
+
+  @@index([normativeVersionPartId])
+  @@unique([normativeVersionPartId, sequenceOrder])
+}
+
+model NormativeVersionMaterial {
+  id                     String   @id @default(uuid())
+  normativeVersionStepId String
+  materialId             String
+  quantity               Float
+  pieces                 Float?
+  length                 Float?
+  width                  Float?
+  height                 Float?
+  isEdgebanded           Boolean?
+
+  step     NormativeVersionStep @relation(fields: [normativeVersionStepId], references: [id], onDelete: Cascade)
+  material Material             @relation(fields: [materialId], references: [id])
+
+  @@index([normativeVersionStepId, materialId])
+}
+
+model MaterialPurchaseHistory {
+  id             String   @id @default(uuid())
+  materialId     String
+  supplierId     String?
+  purchaseDate   DateTime
+  quantity       Float
+  purchasePrice  Float
+  totalValue     Float
+  unit           String
+  invoiceNumber  String?
+  createdAt      DateTime @default(now())
+
+  material Material  @relation(fields: [materialId], references: [id], onDelete: Cascade)
+  supplier Supplier? @relation(fields: [supplierId], references: [id], onDelete: SetNull)
+
+  @@index([materialId, purchaseDate])
+  @@index([supplierId])
+}
+
+
+model Leg {
+  id          String   @id @default(uuid())
+  name        String
+  code        String?  @unique
+  color       String?
+  description String?
+  materialId  String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  material             Material?             @relation(fields: [materialId], references: [id], onDelete: SetNull)
+  productionOrderItems ProductionOrderItem[]
+}
+
+model Nogica {
+  id          String   @id @default(uuid())
+  name        String
+  code        String?  @unique
+  description String?
+  materialId  String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  material                    Material?             @relation(fields: [materialId], references: [id], onDelete: SetNull)
+  productionOrderItemsNogice1 ProductionOrderItem[] @relation("nogice1")
+  productionOrderItemsNogice2 ProductionOrderItem[] @relation("nogice2")
+}
+
+model Rucka {
+  id          String   @id @default(uuid())
+  name        String
+  code        String?  @unique
+  description String?
+  materialId  String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  material             Material?             @relation(fields: [materialId], references: [id], onDelete: SetNull)
+  productionOrderItems ProductionOrderItem[]
+}
+
+model Paspul {
+  id          String   @id @default(uuid())
+  name        String
+  code        String?  @unique
+  description String?
+  materialId  String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  material             Material?             @relation(fields: [materialId], references: [id], onDelete: SetNull)
+  productionOrderItems ProductionOrderItem[]
+}
