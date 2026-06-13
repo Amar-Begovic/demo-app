@@ -31,6 +31,7 @@ interface ScanResponse {
   alreadyScanned: boolean;
   orderCompleted?: boolean;
   orderNumber?: number | null;
+  productionOrderId?: string | null;
 }
 
 export default function PackagingScanPage() {
@@ -46,6 +47,7 @@ export default function PackagingScanPage() {
 
   // For the status panel
   const [highlightOrderNumber, setHighlightOrderNumber] = useState<number | null>(null);
+  const [activeOrderId, setActiveOrderId] = useState<string | null>(null);
   const [refreshKey, setRefreshKey] = useState(0);
 
   useEffect(() => {
@@ -87,6 +89,9 @@ export default function PackagingScanPage() {
       // Update status panel: highlight the scanned order and refresh data
       if (data.orderNumber) {
         setHighlightOrderNumber(data.orderNumber);
+      }
+      if (data.productionOrderId) {
+        setActiveOrderId(data.productionOrderId);
       }
       setRefreshKey((k) => k + 1);
     } catch {
@@ -227,6 +232,7 @@ export default function PackagingScanPage() {
         <div className="sticky top-4">
           <PackagingStatusPanel
             highlightOrderNumber={highlightOrderNumber}
+            activeOrderId={activeOrderId}
             refreshKey={refreshKey}
           />
         </div>

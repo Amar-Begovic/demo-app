@@ -110,6 +110,7 @@ export async function POST(request: NextRequest) {
       alreadyScanned,
       orderCompleted,
       orderNumber: orderInfo?.orderNumber ?? null,
+      productionOrderId: componentBarcode.productionOrderId,
     });
   } catch (error) {
     const message = (error as Error).message;

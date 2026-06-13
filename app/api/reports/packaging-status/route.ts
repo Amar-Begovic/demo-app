@@ -5,6 +5,7 @@ export async function GET(request: NextRequest) {
   try {
     const dateFrom = request.nextUrl.searchParams.get("dateFrom");
     const dateTo = request.nextUrl.searchParams.get("dateTo");
+    const orderId = request.nextUrl.searchParams.get("orderId");
 
     // Build date filter for production orders
     const createdAtFilter: Record<string, Date> = {};
@@ -24,10 +25,14 @@ export async function GET(request: NextRequest) {
     const orders = await prisma.productionOrder.findMany({
       where: {
         isArchived: false,
-        status: { in: ["in_progress", "completed"] },
-        ...(Object.keys(createdAtFilter).length > 0
-          ? { createdAt: createdAtFilter }
-          : {}),
+        ...(orderId
+          ? { id: orderId }
+          : {
+              status: { in: ["in_progress", "completed"] },
+              ...(Object.keys(createdAtFilter).length > 0
+                ? { createdAt: createdAtFilter }
+                : {}),
+            }),
       },
       select: {
         id: true,
