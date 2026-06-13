@@ -446,12 +446,14 @@ export const ExcelImportService = {
    * Returns true if the article already existed (update), false if newly created.
    */
   async upsertArticle(group: ArticleGroup, createNewMaterials = true): Promise<boolean> {
-    return prisma.$transaction(async (tx) => {
+    return prisma.$transaction(
+      async (tx) => {
       // 1. Check if article exists (case-insensitive)
       const existing = await tx.article.findFirst({
         where: { code: { equals: group.code, mode: "insensitive" } },
         select: { id: true },
       });
+
 
       const isUpdate = !!existing;
 
@@ -773,6 +775,8 @@ export const ExcelImportService = {
       }
 
       return isUpdate;
-    });
+    },
+      { maxWait: 60000, timeout: 60000 }
+    );
   },
 };
